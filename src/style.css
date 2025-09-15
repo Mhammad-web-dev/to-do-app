@@ -1,0 +1,310 @@
+/*                   public styles */
+@font-face {
+  font-family: "avenir";
+  src: url(../public/fonts/Avenir\ Book.ttf);
+  src: url(../public/fonts/Avenir\ Heavy.ttf);
+  src: url(../public/fonts/Avenir\ Light.ttf);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "avenir";
+  transition: all 0.3s;
+}
+
+button,
+input {
+  border: 0;
+  outline: none;
+  transition: all 0.2s;
+}
+button {
+  cursor: pointer;
+}
+
+/*                   variables for colors */
+:root {
+  --bg-containers: white;
+  --text-color-big1: rgb(26, 26, 26);
+  --text-color-small1: rgb(59, 59, 59);
+  --text-color-big2: rgb(46, 46, 46);
+  --text-color-small2: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+
+  --text-table-big: rgb(40, 40, 40);
+  --text-table-small: rgb(59, 59, 59);
+  --main--background1: 0;
+  --main--background2: 0;
+}
+.container.dark {
+  --bg-containers: black;
+  --text-color-big1: rgb(230, 230, 230);
+  --text-color-small1: rgb(183, 183, 183);
+  --text-color-big2: rgb(207, 207, 207);
+  --text-color-small2: rgb(193, 193, 193);
+
+  --text-table-big: rgb(219, 219, 219);
+  --text-table-small: rgb(184, 184, 184);
+
+  --main--background1: rgba(0, 0, 0, 0.416);
+  --main--background2: rgba(0, 0, 0, 0.174);
+}
+.container.dark .theme-switcher {
+  color: var(--main--background1);
+}
+
+/*                   set background style */
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main--background1);
+}
+.container .bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url(./images/slovenia-hilltop-3840x2160-23639.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.container .to-do-app {
+  background-color: var(--main--background2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  width: 40rem;
+  padding: 40px;
+}
+
+/*                   info part styles */
+
+.container .to-do-app .title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--bg-containers);
+  border-radius: 10px;
+}
+.container .to-do-app .title-container .info {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+.count-done,
+.count-not-done {
+  color: var(--text-color-small2);
+}
+.count-done span {
+  color: rgb(53, 122, 53);
+}
+.count-not-done span {
+  color: rgb(247, 82, 82);
+}
+.container .to-do-app h1 {
+  font-size: 45px;
+  color: var(--text-color-big1);
+  font-weight: 900;
+}
+
+/*                   form style */
+
+.container .to-do-app .form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.form-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 5px;
+}
+.form .form-item input {
+  width: 86%;
+  padding: 12px 10px;
+  color: var(--text-color-big2);
+  font-size: 14px;
+  font-weight: 700;
+  background-color: var(--bg-containers);
+  border-radius: 10px;
+}
+.container .to-do-app input::placeholder {
+  color: var(--text-color-small2);
+}
+.container .to-do-app .form .form-item button {
+  width: 13%;
+  padding: 12px 10px;
+  color: var(--text-color-small2);
+  font-size: 14px;
+  font-weight: 700;
+  background-color: var(--bg-containers);
+  border-radius: 10px;
+}
+.container .to-do-app .form .form-item button:hover {
+  color: var(--text-color-big2);
+  box-shadow: 0 0 3px var(--text-color-big2);
+}
+
+.form-change-mode-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+}
+.form-change-mode-container .form-change {
+  flex-grow: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  color: var(--text-color-small2);
+  font-size: 14px;
+  font-weight: 700;
+  background-color: var(--bg-containers);
+}
+.delete-all {
+  flex-grow: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: brown;
+  color: rgb(227, 227, 227);
+  font-size: 14px;
+  font-weight: 700;
+}
+.delete-all.disable {
+  flex-grow: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: rgb(244, 95, 95);
+  color: rgb(202, 202, 202);
+  pointer-events: none;
+}
+
+.form-change-mode-container .form-change:hover {
+  color: var(--text-color-big2);
+  box-shadow: 0 0 3px var(--text-color-big2);
+}
+.form-change-mode-container .delete-all:hover {
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 3px rgb(46, 46, 46);
+}
+
+.form-change-mode-container button.active {
+  color: var(--text-color-big2);
+  box-shadow: 0 0 3px var(--text-color-big2);
+}
+
+.todos-container {
+  width: 100%;
+}
+.todos {
+  width: 100%;
+  background-color: var(--bg-containers);
+  padding: 20px;
+  border-radius: 10px;
+}
+.todos-table {
+  width: 100%;
+}
+thead tr {
+  height: 50px;
+}
+tbody tr {
+  height: 35px;
+}
+thead td {
+  font-size: 18px !important;
+  font-weight: bolder !important;
+  color: var(--text-table-big);
+}
+tbody td {
+  font-size: 16px !important;
+  font-weight: bolder !important;
+  color: var(--text-table-small);
+  text-align: center;
+}
+.name-todo {
+  font-size: 18px !important;
+  font-weight: bolder !important;
+  color: var(--text-table-big);
+}
+.operation-text.not-done {
+  color: red;
+}
+.operation-text.done {
+  color: green;
+}
+.delete-btn {
+  color: rgb(255, 90, 90);
+  cursor: pointer;
+}
+.delete-btn:hover {
+  color: rgb(255, 0, 0);
+}
+
+.name-todo {
+  position: relative;
+}
+.name-todo.pointer {
+  position: relative;
+  cursor: pointer;
+}
+
+.name-todo-show {
+  display: none;
+}
+.name-todo-show.active {
+  position: absolute;
+  /* height: 35px; */
+  white-space: nowrap;
+  top: -28px;
+  right: 20px;
+  transform: translateX(50%);
+  background-color: rgb(67, 67, 67);
+  color: white;
+  font-size: 14px;
+  font-weight: bolder;
+  z-index: 10;
+  padding: 5px;
+  border-radius: 8px;
+  display: block;
+}
+.name-todo-show.active::before {
+  content: "";
+  position: absolute;
+  top: 65%;
+  right: 90%;
+  transform: translateX(104%);
+  padding: 8px;
+  background-color: rgb(67, 67, 67);
+  z-index: 5;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 100%;
+  border-top-left-radius: 0;
+}
+
+.message-todos {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
