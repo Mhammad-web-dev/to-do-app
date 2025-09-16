@@ -1,23 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { TodosContext } from "../context/todosContext";
 
 const FormPart = () => {
-  const { todos, setTodos, searchTodos, setSearchTodos } =
-    useContext(TodosContext);
+  const { todos, setTodos, searchTodos, setSearchTodos } = useContext(TodosContext);
+  const inputValue = useRef();
 
   const handelAddTodo = (e) => {
-    const inputValue = document.querySelector(".input-todo");
     const date = new Date();
     const dataLS = JSON.parse(localStorage.getItem("todos"));
-    const valueRepeated = dataLS.filter((t) => t.name === inputValue.value);
+    const valueRepeated = dataLS.filter((t) => t.name === inputValue.current.value);
 
-    if (inputValue.value.trim() === "") return;
+    if (inputValue.current.value.trim() === "") return;
 
     if (e.target.innerHTML === "add") {
       if (valueRepeated.length > 0) return;
       setTodos([
         {
-          name: inputValue.value,
+          name: inputValue.current.value,
           hours: date.toLocaleTimeString(),
           date: date.toLocaleDateString(),
           action: "not-done",
@@ -25,10 +24,10 @@ const FormPart = () => {
         ...todos,
       ]);
     } else if (e.target.innerHTML === "search") {
-      setSearchTodos(todos.filter((t) => t.name === inputValue.value));
+      setSearchTodos(todos.filter((t) => t.name === inputValue.current.value));
     }
 
-    inputValue.value = "";
+    inputValue.current.value = "";
   };
 
   const handelDeleteAll = () => {
@@ -55,7 +54,12 @@ const FormPart = () => {
   return (
     <div className="form">
       <div className="form-item">
-        <input type="text" className="input-todo" placeholder="add item..." />
+        <input
+          ref={inputValue}
+          type="text"
+          className="input-todo"
+          placeholder="add item..."
+        />
         <button className="send-btn" onClick={handelAddTodo} type="button">
           add
         </button>

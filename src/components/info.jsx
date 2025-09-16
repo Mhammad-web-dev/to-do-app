@@ -1,10 +1,10 @@
-import { use, useContext, useEffect } from "react";
+import { use, useContext, useEffect, useRef } from "react";
 import { TodosContext } from "../context/todosContext";
 
 const Info = ({ setTheme, theme }) => {
   const { todos } = useContext(TodosContext);
-  const doneInfo = document.querySelector(".count-done span");
-  const notDoneInfo = document.querySelector(".count-not-done span");
+  const doneInfo = useRef(null);
+  const notDoneInfo = useRef(null);
   const countDoneLength = todos.filter((t) => t.action === "done");
   const countNotDoneLength = todos.filter((t) => t.action === "not-done");
 
@@ -49,10 +49,10 @@ const Info = ({ setTheme, theme }) => {
       />
       <div className="info">
         <span className="count-done">
-          done : <span>{String(countDoneLength.length)}</span>
+          done : <span ref={countDoneLength}>{String(countDoneLength.length)}</span>
         </span>
         <span className="count-not-done">
-          not done : <span>{String(countNotDoneLength.length)}</span>
+          not done : <span ref={countNotDoneLength}>{String(countNotDoneLength.length)}</span>
         </span>
       </div>
     </div>
